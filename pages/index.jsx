@@ -1,31 +1,13 @@
 // This is the root layout component for your Next.js app.
 // Learn more: https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#root-layout-required
-import { Inter } from 'next/font/google'
-import { cn } from '@/lib/utils'
+import '@fontsource/inter/400.css'; // Assumes you use fontsource for fonts
+import '@fontsource/inter/700.css'; // Adjust weights as needed
 import '/home/runner/work/react_ui/react_ui/styles/globals.css'
-
-const fontHeading = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-heading',
-})
-
-const fontBody = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-body',
-})
 
 export default function Layout({ children }) {
   return (
     <html lang="en">
-      <body 
-        className={cn(
-          'antialiased',
-          fontHeading.variable,
-          fontBody.variable
-        )}
-      >
+      <body>
         {children}
       </body>
     </html>
