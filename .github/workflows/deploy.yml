@@ -1,32 +1,28 @@
-name: Build and Deploy to GitHub Pages
-
+name: Build and Deploy
 on:
   push:
     branches:
-      - main  # Set this to your default branch
-
+      - main  # Set to your default branch
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
+    - name: Checkout Code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # Set this to the node version you are using
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Sets Node.js version
 
-      - name: Install Dependencies
-        run: npm install
+    - name: Install Dependencies
+      run: npm install
 
-      - name: Build Project
-        run: npm run build
+    - name: Build and Export
+      run: npm run export
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages  # Pushes build artifacts to gh-pages branch
-          folder: build      # Folder to deploy
-          token: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically creates this secret to authenticate in your workflow
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./out  # The directory Next.js exports the static files to
