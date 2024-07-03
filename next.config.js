@@ -1,5 +1,5 @@
+// next.config.js
 module.exports = {
-  experimental: {
-    nextFont: true, // Enable the new font optimization feature
-  }
+  reactStrictMode: true,
+  // other supported configurations
 };
